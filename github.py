@@ -6,10 +6,21 @@ auto_modules('requests')
 auto_modules('re')
 from bs4 import BeautifulSoup
 from sys import exit
+import requests
+import re 
+import webbrowser
 import os
 
+try :
+	if os.name == 'nt' :
+		os.system('cls')
+	else :
+		os.sytem('clear')
+except :
+	print('Error in clear screen !')
 
 print("""
+######################################################
 
 
       ___           ___                               
@@ -24,6 +35,8 @@ print("""
     \::/  /       \::/  /        /:/  /    \::::/__/  
      \/__/         \/__/         \/__/      ~~~~      
 
+
+######################################################
 """)
 
 question = input('Type any question/subject/word : ')
@@ -31,24 +44,25 @@ question = input('Type any question/subject/word : ')
 words = question.split(' ')
 
 url = "https://github.com/search?o=desc&q="+'+'.join(words)+"&s=stars&type=Repositories" # Creating the link
+print(url)
 
 ################################## GETTING LINKS #############################################
 mylist=[]
 i=0
-try :
-	page = requests.get(url)
+# try :
+page = requests.get(url)
 
-	soup = BeautifulSoup(page.content, 'html.parser')
+soup = BeautifulSoup(page.content, 'html.parser')
 
-	items = soup.find_all('a', class_='v-align-middle')
+items = soup.find_all('a', class_='v-align-middle')
 
-	for item in items :
-		mylist.append("https://github.com"+item['href'])
-		i+=1
-		if i == 10 : # if you want more or less results just change the "10" 
-			break
-except :
-	print('Error !')
+for item in items :
+	mylist.append("https://github.com"+item['href'])
+	i+=1
+	if i == 10 : # if you want more or less results just change the "10" 
+		break
+# except :
+# print('Error !')
 ################################################# CHOICES #################################
 
 print("""WHAT YOU WANNA DO WITH THE DATA :
