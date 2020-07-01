@@ -1,9 +1,13 @@
+
+from autoModules import *
+auto_modules('beautifulsoup4')
+auto_modules('webbrowser')
+auto_modules('requests')
+auto_modules('re')
 from bs4 import BeautifulSoup
-import webbrowser
-import requests
 from sys import exit
 import os
-import re 
+
 
 print("""
 
